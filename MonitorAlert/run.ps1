@@ -60,12 +60,19 @@ if($null -eq $request.Body) {
     return
 }
 
+Write-Host "Channel = $($channel)."
+Write-Host "Json body = $($Request.Body)."
+
 $message = New-SlackMessageFromAlert -Alert $Request.Body.data -Channel $channel
+
+Write-Host "message = $($message)."
+
 
 try {    
     Send-MessageToSlack -SlackToken $slackToken -Message $message
 }
 catch {
+    Write-Host "exception message = $($_.Exception.Message)."
     Push-OutputBindingWrapper -Status BadRequest -Body ("Unable to send slack message:", $_.Exception.Message)
     return     
 }
