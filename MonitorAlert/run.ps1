@@ -65,7 +65,7 @@ Write-Host "Json body = $($Request.Body)."
 Write-Host "Json body schemaId = $($Request.Body.schemaId)."
 Write-Host "Json body data = $($Request.Body.data)."
 
-$body = $request.Body | ConvertTo-Json -Depth 4
+$body = $request.Body | ConvertTo-Json -Depth 7
 Write-Information "json body $($body)" -Verbose
 
 $message = New-SlackMessageFromAlert -Alert $Request.Body.data -Channel $channel
