@@ -62,7 +62,8 @@ if($null -eq $request.Body) {
 
 Write-Host "Channel = $($channel)."
 Write-Host "Json body = $($Request.Body)."
-Write-Host "Json body = $($Request.Body.schemaId)."
+Write-Host "Json body schemaId = $($Request.Body.schemaId)."
+Write-Host "Json body data = $($Request.Body.data)."
 
 
 $message = New-SlackMessageFromAlert -Alert $Request.Body.data -Channel $channel
