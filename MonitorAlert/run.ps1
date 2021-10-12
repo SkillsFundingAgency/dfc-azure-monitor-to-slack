@@ -72,7 +72,7 @@ try {
     Send-MessageToSlack -SlackToken $slackToken -Message $message
 }
 catch {
-    Write-Host "exception message = $($_.Exception.Message)."
+    Write-Host "exception message= $($_.Exception.Message)."
     Push-OutputBindingWrapper -Status BadRequest -Body ("Unable to send slack message:", $_.Exception.Message)
     return     
 }
