@@ -169,5 +169,12 @@ hashtable.  A hashtable representing the message to send to slack.
 
     Write-Information "https://hooks.slack.com/services/$($SlackToken)" -Verbose
 
-    Invoke-RestMethod -Uri https://hooks.slack.com/services/$($SlackToken) -Method POST -UseBasicParsing -Body $serializedMessage
+    try {    
+        Invoke-RestMethod -Uri https://hooks.slack.com/services/$($SlackToken) -Method POST -UseBasicParsing -Body $serializedMessage
+    }
+    catch {
+        Write-Information "exception message= $($_.Exception.Message)."
+        return     
+    }
+
 }
